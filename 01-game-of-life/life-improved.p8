@@ -3,8 +3,7 @@ version 16
 __lua__
 -- the game of life
 -- by howlermiller
--- video edition
-
+-- slightly improved post video
 
 grid = {}
 cols = 32
@@ -17,7 +16,7 @@ function makemap(rows, cols)
 	for x=1,cols do
 		newmap[x] = {}
 		for y=1,rows do
-			newmap[x][y] = flr(rnd(2))
+			newmap[x][y] = 0
 		end
 	end
 
@@ -48,12 +47,18 @@ end
 
 function _init()
 	grid = makemap(rows,cols)
+
+ for x=1,rows do
+  for y=1,cols do
+   grid[x][y] = flr(rnd(2))
+  end
+ end
 end
 
 
 
 
-function _update()
+function updatecells()
 	local newgrid = makemap(rows,cols)
 	
 	for x=1,rows do
@@ -95,4 +100,6 @@ function _draw()
 				)
 			end
 		end
+
+  updatecells()
 end
